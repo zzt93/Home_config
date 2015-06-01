@@ -1,0 +1,8 @@
+[user]
+	email = zengzt93@gmail.com
+	name = zzt
+[push]
+	default = simple
+[core]
+	excludesfile = /home/zzt/.gitignore_global
+	autocrlf = input
