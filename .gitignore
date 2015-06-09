@@ -1,0 +1,8 @@
+.*
+./
+
+!.gitignore
+!.bashrc
+!.gitignore_global
+!.gdbinit
+!.gitconfig

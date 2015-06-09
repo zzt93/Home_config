@@ -52,7 +52,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -126,10 +126,18 @@ stty stop undef
 
 alias fs='find . | grep "\.c\|\.h\|\.S\|\.s" | xargs grep -n '
 
+# why doesn't work??
+#alias count='find . –name "*.[chsS]$" | xargs wc'
+#alias count_nb='find . –name "*.[chsS]$" | xargs grep –v "^$" | wc'
+
 alias count='find . | grep "\.c\|\.h\|\.S\|\.s$" | xargs wc -l'
+# sed "/regexp/" : Match lines matching the regular expression regexp
+# d      Delete pattern space.  Start next cycle.
 alias count_nb='find . | grep "\.c\|\.h\|\.S\|\.s$" | xargs sed "/^\s*$/d" | wc -l'
 
 alias python=python3
+
+alias log='python login.py'
 
 #add path of IntellJ
 #export PATH=/home/zzt/Downloads/used/idea-IC-139.225.3/bin
