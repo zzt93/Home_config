@@ -124,20 +124,6 @@ fi
 
 stty stop undef
 
-alias fs='find . | grep "\.c\|\.h\|\.S\|\.s" | xargs grep -n '
-
-# why doesn't work??
-#alias count='find . –name "*.[chsS]$" | xargs wc'
-#alias count_nb='find . –name "*.[chsS]$" | xargs grep –v "^$" | wc'
-
-alias count='find . | grep "\.c\|\.h\|\.S\|\.s$" | xargs wc -l'
-# sed "/regexp/" : Match lines matching the regular expression regexp
-# d      Delete pattern space.  Start next cycle.
-alias count_nb='find . | grep "\.c\|\.h\|\.S\|\.s$" | xargs sed "/^\s*$/d" | wc -l'
-
-alias python=python3
-
-alias log='python login.py'
 
 #add path of IntellJ
 #export PATH=/home/zzt/Downloads/used/idea-IC-139.225.3/bin

@@ -1,8 +1,8 @@
-.*
-./
+*
 
 !.gitignore
 !.bashrc
 !.gitignore_global
 !.gdbinit
 !.gitconfig
+!.bash_aliases
