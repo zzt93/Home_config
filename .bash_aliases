@@ -1,10 +1,10 @@
-alias fs='find . -type f | grep "\.[sSch]$" | xargs grep -n '
+alias fs='find . -type f | grep "\.[sSch]$" | xargs egrep -n -w'
 
 # why doesn't work??
 #alias count='find . –name "*.[chsS]$" | xargs wc'
 #alias count_nb='find . –name "*.[chsS]$" | xargs grep –v "^$" | wc'
 
-# or grep -E 
+# or grep -E
 #alias countAll='find . -type f | egrep --null "\.([chsS]|java|py)$" | xargs -0 wc -l'
 alias countAll='find . -type f | egrep "\.([chsS]|java|py)$" | xargs wc -l'
 
@@ -57,22 +57,32 @@ read_line_from () {
     #IFS=$old
 }
 
-# works for c, c++, java
+# assume function definition like 'name (...) {'
+# works for c, c++, java, bash
 define () {
     tabs -4
-    local fun_info=$(fs " $1.*{")
-    #echo $fun_info
-    IFS=':' read -ra array <<< "$fun_info"
+	# counter-example: 'handle_process() {' -- 'process' -w
+	# Process get_process() {' -- 'Process'	
+    local fun_info=$(fs "$1[^a-z]*\(.*\).*{")
+    #echo "$fun_info"
+	# Words of the form $'string' are treated specially. The word expands to string, with backslash-escaped characters replaced as specified by the ANSI C standard.
+    IFS=$'\n:' read -d '' -ra array <<< "$fun_info"
     #local array=(${fun_info//:/ }) -- this is wrong for definition has space
     # which will split more than needed.
     local len=${#array[@]}
-    #echo "${array[3]} ${array[5]}"
-    #echo "$len"
+    #echo "$len ${array[2]}"
+	#echo "..."
+    #echo "${array[3]}"
+	#echo "..."
     local k=1
     if [ $len -gt 3 ]
     then
         echo "$fun_info"
         read -p "Enter a number to choose one: " k
+    elif [ $len -lt 3 ]
+    then
+		echo "Such function not found"
+		return
     fi
     #echo ${array[0]} ${array[1]}
     local index=$((3 * (k - 1)))
