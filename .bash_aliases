@@ -88,6 +88,7 @@ define () {
     local index=$((3 * (k - 1)))
 
     local line=`read_line_from ${array[$index]} ${array[$((index + 1))]}`
+	echo "${array[$index]}:"
     printf "$line\n"
     declare -i count_left=1
     declare -i i=1
@@ -107,3 +108,10 @@ define () {
         ((i++))
     done
 }
+
+gitday () {
+	git add .
+	git commit
+	git push
+}
+	
