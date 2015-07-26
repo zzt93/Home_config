@@ -112,7 +112,6 @@ define () {
 gitday () {
 	git add .
 	git commit
-	git push
-	echo 'zzt93'
+	echo 'zzt93' | git push
 }
 	
