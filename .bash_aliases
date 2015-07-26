@@ -6,7 +6,7 @@ alias fs='find . -type f | grep "\.[sSch]$" | xargs egrep -n -w'
 
 # or grep -E
 #alias countAll='find . -type f | egrep --null "\.([chsS]|java|py)$" | xargs -0 wc -l'
-alias countAll='find . -type f | egrep "\.([chsS]|java|py)$" | xargs wc -l'
+alias countAll='find . -type f | egrep "\.([chsSl]|java|py|sh)$" | xargs wc -l'
 
 alias count='find . -type f | grep "\.[chsS]$" | xargs wc -l'
 # sed "/regexp/" : Match lines matching the regular expression regexp
@@ -113,5 +113,6 @@ gitday () {
 	git add .
 	git commit
 	git push
+	echo 'zzt93'
 }
 	
