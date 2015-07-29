@@ -112,6 +112,11 @@ define () {
 gitday () {
 	git add .
 	git commit
-	echo 'zzt93' | git push
+	git push
 }
 	
+init () {
+	nohup firefox &
+	nohup emacs &
+	nohup ss-qt5 &
+}
