@@ -116,7 +116,10 @@ gitday () {
 }
 	
 init () {
-	nohup firefox &
-	nohup emacs &
-	nohup ss-qt5 &
+	firefox &
+	disown
+	emacs &
+	disown
+	ss-qt5 &
+	disown
 }
