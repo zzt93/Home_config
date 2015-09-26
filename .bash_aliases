@@ -6,7 +6,8 @@ alias fs='find . -type f | grep "\.[sSch]$" | xargs egrep -n -w'
 
 # or grep -E
 #alias countAll='find . -type f | egrep --null "\.([chsS]|java|py)$" | xargs -0 wc -l'
-alias countAll='find . -type f | egrep "\.([chsSl]|java|py|sh)$" | xargs wc -l'
+# `.S` is the disassembler like `objdump` or just gcc default suffix, so just using `.S` if I write one
+alias countAll='find . -type f | egrep "\.([chSl]|java|py|sh)$" | xargs wc -l'
 
 alias count='find . -type f | grep "\.[chsS]$" | xargs wc -l'
 # sed "/regexp/" : Match lines matching the regular expression regexp
@@ -110,15 +111,38 @@ define () {
 }
 
 gitday () {
-	git add .
-	git commit
-	git push
+	git status
+	read -p "Continue?(y/n) " res
+	if [ "$res" == "y" ]
+	then
+		git add .
+		git commit
+		git push
+	fi
 }
 	
-init () {
+os () {
 	firefox &
 	disown
-	emacs &
+	emacs -fs &
+	disown
+	ss-qt5 &
+	disown
+}
+
+android () {
+	firefox &
+	disown
+	studio &
+	disown
+	ss-qt5 &
+	disown
+}
+
+web () {
+	firefox &
+	disown
+	pycharm &
 	disown
 	ss-qt5 &
 	disown
