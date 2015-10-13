@@ -1,4 +1,10 @@
-alias fs='find . -type f | grep "\.[sSch]$" | xargs egrep -n -w'
+alias fs='fsrc [sSch]'
+
+alias fcpp='fsrc (cpp)'
+
+fsrc () {
+	find . -type f | egrep "\.$1$" | xargs egrep -n -w "$2"
+}
 
 # why doesn't work??
 #alias count='find . –name "*.[chsS]$" | xargs wc'
@@ -17,7 +23,7 @@ alias count_nb='find . | grep "\.[chsS]$" | xargs sed "/^\s*$/d" | wc -l'
 
 alias python=python3
 
-alias log='python /home/zzt/login.py'
+alias log='python ~/login.py'
 
 alias proxy='gsettings set org.gnome.system.proxy mode 'manual''
 alias proxyN='gsettings set org.gnome.system.proxy mode 'none''
@@ -121,6 +127,13 @@ gitday () {
 	fi
 }
 	
+common () {
+	firefox &
+	disown
+	ss-qt5 &
+	disown
+}
+
 os () {
 	firefox &
 	disown
